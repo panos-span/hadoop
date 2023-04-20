@@ -35,8 +35,8 @@ for center, sum_xy in center_sums.items():
 
 # Check if the new centers are the same as the old ones
 if new_centers == centers:
-    print("Converged")  # 1
+    print(1)  # Converged
 else:
-    print("Not converged")  # 0
+    print(0)  # Not converge
 
     # print(new_centers)
