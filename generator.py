@@ -1,5 +1,7 @@
 import numpy as np
 
+__authors__ = "Emmanouil Dellatolas and Panagiotis Alexios Spanakis"
+
 # Define the three cluster centers
 centers = np.array([[-5, -5], [-5, 5], [8, 8]])
 
