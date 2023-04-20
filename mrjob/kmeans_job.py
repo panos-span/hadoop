@@ -1,6 +1,7 @@
 from mrjob.job import MRJob
 import math
 
+__authors__ = "Emmanouil Dellatolas and Panagiotis Alexios Spanakis"
 
 class KMeans(MRJob):
 
