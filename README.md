@@ -31,7 +31,8 @@ python generator.py
 
 ## 2. K-means algorithm Implementation 1
 
-The files that are used for the implementation of the K-means algorithm are the following:
+The files that are used for this implementation of the K-means algorithm are located in the [mrjob](mrjob) folder.
+and are the following:
 
 ### k_means_job.py
 
