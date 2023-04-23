@@ -3,6 +3,7 @@ import math
 
 __authors__ = "Emmanouil Dellatolas and Panagiotis Alexios Spanakis"
 
+
 class KMeans(MRJob):
 
     def configure_args(self):
@@ -15,13 +16,8 @@ class KMeans(MRJob):
             x, y = center.split(',')
             self.centers.append((float(x), float(y)))
 
-        # with open(self.options.centers, 'r') as f:
-        #    for line in f:
-        #        x, y = line.strip().split(',')
-        #        self.centers.append((float(x), float(y)))
-
-    def euclidean_distance(self, p1, p2):
-        return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+    def euclidean_distance(self, point1, point2):
+        return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
 
     def mapper_init(self):
         # Load the centers if they haven't been loaded yet
@@ -33,13 +29,7 @@ class KMeans(MRJob):
         x, y = map(float, line.strip().split(','))
 
         # Find the closest center to the data point
-        closest_center = None
-        closest_distance = float('inf')
-        for center in self.centers:
-            distance = self.euclidean_distance((x, y), center)
-            if distance < closest_distance:
-                closest_center = center
-                closest_distance = distance
+        closest_center = min(self.centers, key=lambda center: self.euclidean_distance((x, y), center))
 
         # Output the closest center and the data point
         yield closest_center, (x, y)

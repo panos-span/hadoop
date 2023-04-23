@@ -6,6 +6,13 @@ __authors__ = "Emmanouil Dellatolas and Panagiotis Alexios Spanakis"
 import sys
 import math
 
+THRESHOLD = 0.0001
+
+
+def euclidean_distance(point1, point2):
+    return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+
+
 # Define the three cluster centers
 with open("centers.txt", "r") as f:
     centers = [tuple(map(float, line.strip().split(","))) for line in f]
@@ -34,9 +41,13 @@ for center, sum_xy in center_sums.items():
     new_centers.append((new_center_x, new_center_y))
 
 # Check if the new centers are the same as the old ones
-if new_centers == centers:
+
+converged = True
+for center1, center2 in zip(centers, new_centers):
+    if euclidean_distance(center1, center2) > THRESHOLD:
+        converged = False
+
+if converged:
     print("Converged")  # Converged
 else:
-    print("Not")  # Not converge
-
-    # print(new_centers)
+    print("Not")  # Not converged

@@ -3,8 +3,8 @@ import numpy as np
 __authors__ = "Emmanouil Dellatolas and Panagiotis Alexios Spanakis"
 
 # Define the three cluster centers
-centers = np.array([[-5, -5], [-5, 5], [8, 8]])
-
+with open("centers.txt", "r") as f:
+    centers = np.array([tuple(map(float, line.strip().split(","))) for line in f])
 # Define the number of points per cluster
 n_points = 350000
 
